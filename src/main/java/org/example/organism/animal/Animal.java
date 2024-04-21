@@ -1,10 +1,15 @@
 package org.example.organism.animal;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.example.interfaces.DieBehavior;
 import org.example.interfaces.EatBehavior;
 import org.example.interfaces.MoveBehavior;
+import org.example.interfaces.ReproduceBehavior;
+import org.example.island.Cell;
 import org.example.organism.Organism;
+import org.example.unit.MoveUtil;
+import org.example.unit.ReproduceUtil;
 
 public abstract class Animal extends Organism implements EatBehavior, MoveBehavior, DieBehavior {
     @Getter
@@ -20,11 +25,7 @@ public abstract class Animal extends Organism implements EatBehavior, MoveBehavi
     @Getter
     protected int maxInstance;
     @Getter
-    protected boolean isAlive;
-    @Getter
-    protected int xCellPosition;
-    @Getter
-    protected int yCellPosition;
+    protected Boolean isAlive;
     @Getter
     protected int currentHeirs;
     @Getter
@@ -39,15 +40,15 @@ public abstract class Animal extends Organism implements EatBehavior, MoveBehavi
     protected EatBehavior eatBehavior;
     @Getter
     protected MoveBehavior moveBehavior;
-//    protected ReproduceBehavior reproduceBehavior;
-//    protected UtilMove utilMove = new UtilMove();
-//    protected UtilReproduce utilReproduce = new UtilReproduce();
+    @Getter
+    protected ReproduceBehavior reproduceBehavior;
+    protected MoveUtil moveUtil = new MoveUtil();
+    protected ReproduceUtil reproduceUtil = new ReproduceUtil();
 
-    public Animal(double weight, double satiety, int maxDistance, int maxInstance, int maxHeirs, int maxPostBreedingStep) {
+    public Animal(double weight, double satiety, int maxDistance, int maxHeirs, int maxPostBreedingStep) {
         this.maxWeight = weight;
         this.maxSatiety = satiety;
         this.maxDistance = maxDistance;
-        this.maxInstance = maxInstance;
         this.maxHeirs = maxHeirs;
         this.maxPostBreedingStep = maxPostBreedingStep;
 
@@ -56,8 +57,4 @@ public abstract class Animal extends Organism implements EatBehavior, MoveBehavi
         isAlive = true;
     }
 
-    public void setCell(int xCellPosition, int yCellPosition) {
-        this.xCellPosition = xCellPosition;
-        this.yCellPosition = yCellPosition;
-    }
 }
