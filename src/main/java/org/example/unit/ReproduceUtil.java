@@ -52,7 +52,7 @@ public class ReproduceUtil implements Comparator<Animal> {
         int size = setOrganisms.size();
         boolean hasPartner = false;
 
-        if (size >= capacity || size < 1) {
+        if (size >= capacity || size == 0) {
             return false;
         }
 //        for (Organism org : setOrganisms) {
